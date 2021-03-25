@@ -25,6 +25,12 @@ module.exports = {
         currency: 'USD',
         country: 'US'
       }
+    },
+    lexascms: {
+      location: 'vsf-lexascms/server',
+      configuration: {
+        spaceId: process.env.LEXASCMS_SPACE_ID
+      }
     }
   }
 };

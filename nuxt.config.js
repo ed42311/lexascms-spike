@@ -1,7 +1,6 @@
 import webpack from 'webpack';
 
 export default {
-  mode: 'universal',
   server: {
     port: 3000,
     host: '0.0.0.0'
@@ -73,7 +72,8 @@ export default {
       i18n: {
         useNuxtI18nConfig: true
       }
-    }]
+    }],
+    ['vsf-lexascms/nuxt']
   ],
   modules: [
     'nuxt-i18n',
