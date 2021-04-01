@@ -108,11 +108,14 @@ import MobileStoreBanner from '~/components/MobileStoreBanner.vue';
 import LazyHydrate from 'vue-lazy-hydration';
 import { onSSR } from '@vue-storefront/core';
 import { useContent } from 'vsf-lexascms';
+// import { useRoute } from 'vue-router';
 
 export default {
   name: 'Home',
-  setup() {
+  setup(_, context) {
     const { content: promoBanners, search } = useContent();
+    // const route = useRoute()
+    // console.log(route.query)
 
     onSSR(async () => {
       await search({
@@ -120,6 +123,11 @@ export default {
         contentType: 'promoBanner',
         params: {
           include: 'backgroundImage'
+        },
+        context: {
+          audienceAttributes: {
+            localTemperature: context.root.$route.query.localTemp ? parseInt(context.root.$route.query.localTemp, 10) : null
+          }
         }
       });
     });
