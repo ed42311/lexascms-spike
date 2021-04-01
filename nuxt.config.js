@@ -35,7 +35,16 @@ export default {
         once: true
       }
     ],
-    script: []
+    script: [
+      {
+        hid: 'lexascms',
+        defer: true,
+        innerHTML: '(function(e,t){void 0!==e.addEventListener&&e.addEventListener("load",function(){var e=t.getElementsByTagName("script")[0],n=t.createElement("script");n.type="text/javascript",n.async=!0,n.src="https://static.lexascms.com/lexascms.js",e.parentNode.insertBefore(n,e)},!1)})(window,document)'
+      }
+    ],
+    __dangerouslyDisableSanitizersByTagID: {
+      lexascms: ['innerHTML']
+    }
   },
   loading: { color: '#fff' },
   router: {

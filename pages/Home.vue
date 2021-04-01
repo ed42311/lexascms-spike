@@ -118,17 +118,25 @@ export default {
     // console.log(route.query)
 
     onSSR(async () => {
+      let requestContext;
+      const { lexascmsRequestContext, localTemp } = context.root.$route.query;
+      if (lexascmsRequestContext !== undefined) {
+        requestContext = lexascmsRequestContext;
+      } else {
+        requestContext = {
+          audienceAttributes: {
+            localTemperature: localTemp ? parseInt(localTemp, 10) : null
+          }
+        };
+      }
+
       await search({
         type: 'collection',
         contentType: 'promoBanner',
         params: {
           include: 'backgroundImage'
         },
-        context: {
-          audienceAttributes: {
-            localTemperature: context.root.$route.query.localTemp ? parseInt(context.root.$route.query.localTemp, 10) : null
-          }
-        }
+        context: requestContext
       });
     });
 
